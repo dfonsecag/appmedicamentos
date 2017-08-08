@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Farmacia
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-grid *ngFor="let farmacia of list">
+
+
+    <ion-row>
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img src="assets/imgs/farmacia.jpg">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <h3>{{farmacia.nombre}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img src="assets/imgs/correo.jpg">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <h3>{{farmacia.correo}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img src="assets/imgs/direccion.jpg">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <h4>{{farmacia.direccion}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-2>
+        <ion-avatar item-start>
+          <img src="assets/imgs/ubicacion.png">
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-10>
+        <button ion-button round (click)='openFilters(farmacia.latitud, farmacia.longitud);'>Abrir Dirección GPS</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+       <ion-col col-12>
+        <h4>Contactar {{farmacia.nombre}}</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-6><button ion-button color="secondary" (click)="launchDialer(farmacia.telefono1)"><ion-icon name="call"></ion-icon>   {{farmacia.telefono1}}</button></ion-col>
+      <ion-col col-6><button ion-button color="secondary" (click)="launchDialer(farmacia.telefono2)"><ion-icon name="call"></ion-icon>   {{farmacia.telefono2}}</button></ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

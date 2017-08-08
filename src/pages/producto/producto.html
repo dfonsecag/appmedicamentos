@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Búsqueda de productos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form #myForm='ngForm' (ngSubmit)="onSubmit(myForm)">
+    <ion-item>
+      <ion-label>Producto</ion-label>
+
+      <ion-input type="text" [(ngModel)]="producto" name="producto"></ion-input>
+
+    </ion-item>
+    <button ion-button color="secondary" block><ion-icon name="search"></ion-icon>Buscar</button>
+  </form>
+
+  <ion-list>
+    <button ion-item *ngFor="let producto of list" (click)="itemSelected(producto.id)">
+    {{ producto.nombre }}
+  </button>
+  </ion-list>
+</ion-content>
