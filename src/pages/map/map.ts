@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {  NavController } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaPage } from '../farmacia/farmacia';
 
 
+
 import { Geolocation } from '@ionic-native/geolocation';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  MarkerOptions
-} from '@ionic-native/google-maps';
+
 declare var google;
 
 @Component({
@@ -65,7 +60,7 @@ Ubication(data){
     });
     // Muestra el punto del mapa en la ubicacion actual de usuario
        google.maps.event.addListenerOnce(this.map, 'idle', () => {
-        let marker = new google.maps.Marker({
+         new google.maps.Marker({
           position: myLatLng,
           map: this.map,
           title: 'Aquí estoy yo'

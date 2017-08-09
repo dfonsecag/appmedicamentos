@@ -21,8 +21,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DireccionesProvider } from '../providers/direcciones/direcciones';
 import { LocationsProvider } from '../providers/locations/locations';
-import { IonicPageModule } from 'ionic-angular';
 
+import { Network } from '@ionic-native/network';
 
 
 
@@ -65,7 +65,8 @@ import { IonicPageModule } from 'ionic-angular';
     CallNumber,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     DireccionesProvider,
-    LocationsProvider
+    LocationsProvider,
+    Network
   ]
 })
 export class AppModule { }

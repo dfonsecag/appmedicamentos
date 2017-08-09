@@ -1,17 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaProductoPage } from '../farmacia-producto/farmacia-producto';
 
 
 import { Geolocation } from '@ionic-native/geolocation';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  LatLng,
-  MarkerOptions
-} from '@ionic-native/google-maps';
+
 declare var google;
 
 /**
@@ -80,7 +74,7 @@ export class FarmaciasCercanasPage {
     });
     // Muestra el punto del mapa en la ubicacion actual de usuario
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
-      let marker = new google.maps.Marker({
+       new google.maps.Marker({
         position: myLatLng,
         map: this.map,
         title: 'Aquí estoy yo'
