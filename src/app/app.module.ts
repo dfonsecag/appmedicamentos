@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { CallNumber } from '@ionic-native/call-number';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -13,6 +14,7 @@ import { ProductoPage } from '../pages/producto/producto';
 import { InfoProductoPage } from '../pages/info-producto/info-producto';
 import { FarmaciasCercanasPage } from '../pages/farmacias-cercanas/farmacias-cercanas';
 import { FarmaciaProductoPage } from '../pages/farmacia-producto/farmacia-producto';
+import { HomePage } from '../pages/home/home';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
@@ -36,7 +38,8 @@ import { Network } from '@ionic-native/network';
     FarmaciasCercanasPage,
     ProductoPage,
     InfoProductoPage,
-    FarmaciaProductoPage
+    FarmaciaProductoPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -52,11 +55,12 @@ import { Network } from '@ionic-native/network';
     FarmaciasCercanasPage,
     ProductoPage,
     InfoProductoPage,
-    FarmaciaProductoPage
+    FarmaciaProductoPage,
+    HomePage
 
   ],
   providers: [
-
+    Diagnostic,
     StatusBar,
     SplashScreen,
     Geolocation,

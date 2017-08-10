@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {  NavController } from 'ionic-angular';
+import {  NavController, AlertController, Platform } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaPage } from '../farmacia/farmacia';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 
@@ -17,19 +18,48 @@ export class MapPage {
   map: any;
   myUbication: any;
   constructor(
+    private diagnostic: Diagnostic,
+    public platform: Platform, private alertController: AlertController,
     public geolocation: Geolocation,
     private navCtrl: NavController,
      public locations: LocationsProvider
   ) { }
 
   ionViewDidLoad() {
-    this.loadPeople();
-
+    this.checkLocation();
+    // this.FarmaciasCercanas();
   }
-  loadPeople(){
+  // Verificar gps activo
+  checkLocation() {
+    this.platform.ready().then((readySource) => {
+
+      this.diagnostic.isLocationEnabled().then(
+        (isAvailable) => {
+          if (isAvailable == false) {
+            let alert = this.alertController.create({
+              title: 'GPS desconectado',
+              subTitle: 'Active el GPS de su dispositivo.',
+              buttons: ['ok']
+            });
+            alert.present();
+          }
+          else{
+             this.FarmaciasCercanas();
+          }
+        }).catch((e) => {
+          console.log(e);
+          alert(JSON.stringify(e));
+        });
+
+
+    });
+  }
+
+  FarmaciasCercanas(){
     this.locations.load()
     .then(data => {
       this.Ubication(data);
+      
     });
   }
 Ubication(data){
@@ -43,7 +73,7 @@ Ubication(data){
 }
 
   loadMap(markers, ubication) {
-    
+    console.log(markers);
 
     let latitude = ubication.coords.latitude;
     let longitude = ubication.coords.longitude;
@@ -63,13 +93,14 @@ Ubication(data){
          new google.maps.Marker({
           position: myLatLng,
           map: this.map,
-          title: 'Aquí estoy yo'
+          label: 'Yo',
         });
         mapEle.classList.add('show-map');
       });
 
     markers.forEach(marker => {
-      
+      console.log(marker.distance);
+      // if(marker.distance!="0.00"){
       let latitud = parseFloat(marker.latitud);
     let longitud = parseFloat(marker.longitud);
     let title = marker.nombre;
@@ -88,6 +119,7 @@ Ubication(data){
       });
         mapEle.classList.add('show-map');
       });
+    // }
     });
   }
   page(id) {

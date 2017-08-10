@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaProductoPage } from '../farmacia-producto/farmacia-producto';
-
-
+import { Diagnostic } from '@ionic-native/diagnostic';
 import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
@@ -27,6 +26,8 @@ export class FarmaciasCercanasPage {
   map: any;
   myUbication: any;
   constructor(
+    private diagnostic: Diagnostic,
+    public platform: Platform, private alertController: AlertController,
     public geolocation: Geolocation,
     private navCtrl: NavController,
     public locations: LocationsProvider,
@@ -37,8 +38,33 @@ export class FarmaciasCercanasPage {
   }
 
   ionViewDidLoad() {
-    this.loadFarmaciasCercanas();
+    // this.loadFarmaciasCercanas();
+    this.checkLocation();
+  }
+  // Verificar gps activo
+  checkLocation() {
+    this.platform.ready().then((readySource) => {
 
+      this.diagnostic.isLocationEnabled().then(
+        (isAvailable) => {
+          if (isAvailable == false) {
+            let alert = this.alertController.create({
+              title: 'GPS desconectado',
+              subTitle: 'Active el GPS de su dispositivo.',
+              buttons: ['ok']
+            });
+            alert.present();
+          }
+          else{
+             this.loadFarmaciasCercanas();
+          }
+        }).catch((e) => {
+          console.log(e);
+          alert(JSON.stringify(e));
+        });
+
+
+    });
   }
   loadFarmaciasCercanas() {
     this.locations.FarmaciasCercanas(this.idProducto)
