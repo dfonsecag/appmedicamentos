@@ -6,8 +6,6 @@ import { HttpModule } from '@angular/http';
 import { CallNumber } from '@ionic-native/call-number';
 import { Diagnostic } from '@ionic-native/diagnostic';
 
-
-import { TabsPage } from '../pages/tabs/tabs';
 import { MapPage } from '../pages/map/map';
 import { FarmaciaPage } from '../pages/farmacia/farmacia';
 import { ProductoPage } from '../pages/producto/producto';
@@ -32,7 +30,6 @@ import { Network } from '@ionic-native/network';
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage,
     MapPage,
     FarmaciaPage,
     FarmaciasCercanasPage,
@@ -49,7 +46,6 @@ import { Network } from '@ionic-native/network';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    TabsPage,
     MapPage,
     FarmaciaPage,
     FarmaciasCercanasPage,

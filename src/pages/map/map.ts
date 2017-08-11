@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavController, AlertController, Platform } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaPage } from '../farmacia/farmacia';
 import { Diagnostic } from '@ionic-native/diagnostic';
@@ -22,7 +22,7 @@ export class MapPage {
     public platform: Platform, private alertController: AlertController,
     public geolocation: Geolocation,
     private navCtrl: NavController,
-     public locations: LocationsProvider
+    public locations: LocationsProvider
   ) { }
 
   ionViewDidLoad() {
@@ -43,8 +43,8 @@ export class MapPage {
             });
             alert.present();
           }
-          else{
-             this.FarmaciasCercanas();
+          else {
+            this.FarmaciasCercanas();
           }
         }).catch((e) => {
           console.log(e);
@@ -55,22 +55,22 @@ export class MapPage {
     });
   }
 
-  FarmaciasCercanas(){
+  FarmaciasCercanas() {
     this.locations.load()
-    .then(data => {
-      this.Ubication(data);
-      
-    });
+      .then(data => {
+        this.Ubication(data);
+
+      });
   }
-Ubication(data){
- this.geolocation.getCurrentPosition()
+  Ubication(data) {
+    this.geolocation.getCurrentPosition()
       .then(response => {
         this.loadMap(data, response);
       })
       .catch(error => {
         console.log(error);
       })
-}
+  }
 
   loadMap(markers, ubication) {
     console.log(markers);
@@ -89,42 +89,43 @@ Ubication(data){
       zoom: 12
     });
     // Muestra el punto del mapa en la ubicacion actual de usuario
-       google.maps.event.addListenerOnce(this.map, 'idle', () => {
-         new google.maps.Marker({
-          position: myLatLng,
-          map: this.map,
-          label: 'Yo',
-        });
-        mapEle.classList.add('show-map');
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+      new google.maps.Marker({
+        position: myLatLng,
+        map: this.map,
+        label: 'Yo',
       });
+      mapEle.classList.add('show-map');
+    });
 
     markers.forEach(marker => {
-      console.log(marker.distance);
-      // if(marker.distance!="0.00"){
-      let latitud = parseFloat(marker.latitud);
-    let longitud = parseFloat(marker.longitud);
-    let title = marker.nombre;
-    let idFarmacia = marker.id;
-    // create LatLng object
-    let myLatLng = { lat: latitud, lng: longitud };
-      google.maps.event.addListenerOnce(this.map, 'idle', () => {
-        let marker = new google.maps.Marker({
-          position: myLatLng,
-          map: this.map,
-          title: title,
-          id: idFarmacia
-        });
+      let distance = parseFloat(marker.distance);
+      console.log(distance);
+      if (marker.distance != "0.00") {
+        let latitud = parseFloat(marker.latitud);
+        let longitud = parseFloat(marker.longitud);
+        let title = marker.nombre;
+        let idFarmacia = marker.id;
+        // create LatLng object
+        let myLatLng = { lat: latitud, lng: longitud };
+        google.maps.event.addListenerOnce(this.map, 'idle', () => {
+          let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: this.map,
+            title: title,
+            id: idFarmacia
+          });
           marker.addListener('click', (event) => {
-        this.page(marker.id);
-      });
-        mapEle.classList.add('show-map');
-      });
-    // }
+            this.page(marker.id);
+          });
+          mapEle.classList.add('show-map');
+        });
+      }
     });
   }
   page(id) {
-    this.navCtrl.push(FarmaciaPage,{id: id})
+    this.navCtrl.push(FarmaciaPage, { id: id })
   }
- 
+
 
 }

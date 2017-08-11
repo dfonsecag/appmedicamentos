@@ -55,8 +55,8 @@ export class FarmaciasCercanasPage {
             });
             alert.present();
           }
-          else{
-             this.loadFarmaciasCercanas();
+          else {
+            this.loadFarmaciasCercanas();
           }
         }).catch((e) => {
           console.log(e);
@@ -100,7 +100,7 @@ export class FarmaciasCercanasPage {
     });
     // Muestra el punto del mapa en la ubicacion actual de usuario
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
-       new google.maps.Marker({
+      new google.maps.Marker({
         position: myLatLng,
         map: this.map,
         title: 'Aquí estoy yo'
@@ -109,25 +109,28 @@ export class FarmaciasCercanasPage {
     });
 
     markers.forEach(marker => {
-
-      let latitud = parseFloat(marker.latitud);
-      let longitud = parseFloat(marker.longitud);
-      let title = marker.nombre;
-      let idProducto = marker.id;
-      // create LatLng object
-      let myLatLng = { lat: latitud, lng: longitud };
-      google.maps.event.addListenerOnce(this.map, 'idle', () => {
-        let marker = new google.maps.Marker({
-          position: myLatLng,
-          map: this.map,
-          title: title,
-          idProducto: idProducto,
+      let distance = parseFloat(marker.distance);
+      console.log(distance);
+      if (marker.distance != 0.00) {
+        let latitud = parseFloat(marker.latitud);
+        let longitud = parseFloat(marker.longitud);
+        let title = marker.nombre;
+        let idProducto = marker.id;
+        // create LatLng object
+        let myLatLng = { lat: latitud, lng: longitud };
+        google.maps.event.addListenerOnce(this.map, 'idle', () => {
+          let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: this.map,
+            title: title,
+            idProducto: idProducto,
+          });
+          marker.addListener('click', (event) => {
+            this.page(idProducto);
+          });
+          mapEle.classList.add('show-map');
         });
-        marker.addListener('click', (event) => {
-          this.page(idProducto);
-        });
-        mapEle.classList.add('show-map');
-      });
+      }
     });
   }
   page(id) {
