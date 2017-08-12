@@ -12,6 +12,7 @@ import { InfoProductoPage } from '../pages/info-producto/info-producto';
 import { FarmaciasCercanasPage } from '../pages/farmacias-cercanas/farmacias-cercanas';
 import { FarmaciaProductoPage } from '../pages/farmacia-producto/farmacia-producto';
 import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
@@ -35,7 +36,8 @@ import { Network } from '@ionic-native/network';
     ProductoPage,
     InfoProductoPage,
     FarmaciaProductoPage,
-    HomePage
+    HomePage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { Network } from '@ionic-native/network';
     ProductoPage,
     InfoProductoPage,
     FarmaciaProductoPage,
-    HomePage
+    HomePage,
+    TabsPage
 
   ],
   providers: [

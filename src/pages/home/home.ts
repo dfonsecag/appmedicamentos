@@ -37,8 +37,8 @@ export class HomePage {
    this.network.type
     if (connectionState == 'offline') {
       this.toast.create({
-        message: `Active el Internet de su dispositivo y GPS`,
-        duration: 3000
+        message: `Active el Internet y GPS de su dispositivo`,
+        duration: 5000
       }).present();
     }
     else
