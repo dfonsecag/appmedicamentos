@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { MapPage } from '../map/map';
 import { ProductoPage } from '../producto/producto';
 import { Network } from '@ionic-native/network';
@@ -18,7 +18,7 @@ import { Network } from '@ionic-native/network';
 })
 export class HomePage {
 
-  constructor(private alertController: AlertController, private network: Network, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toast: ToastController, private network: Network, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -34,19 +34,17 @@ export class HomePage {
   }
   // mostrar el estado de conexion
   displayNetworkUpdate(connectionState: string) {
-    let networkType = this.network.type
+   this.network.type
     if (connectionState == 'offline') {
-      let alert = this.alertController.create({
-        title: 'Internet desconectado',
-        subTitle: 'Active el Internet de su dispositivo.',
-        buttons: ['ok']
-      });
-      alert.present();
+      this.toast.create({
+        message: `Active el Internet de su dispositivo y GPS`,
+        duration: 3000
+      }).present();
     }
     else
       console.log('conectado')
   }
-  
+
   // pasa a la pagina de farmacias cercanas
   FarmaciaCercanas() {
     this.navCtrl.push(MapPage)

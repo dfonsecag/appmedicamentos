@@ -38,34 +38,10 @@ export class FarmaciasCercanasPage {
   }
 
   ionViewDidLoad() {
-    // this.loadFarmaciasCercanas();
-    this.checkLocation();
+     this.loadFarmaciasCercanas();
+
   }
-  // Verificar gps activo
-  checkLocation() {
-    this.platform.ready().then((readySource) => {
-
-      this.diagnostic.isLocationEnabled().then(
-        (isAvailable) => {
-          if (isAvailable == false) {
-            let alert = this.alertController.create({
-              title: 'GPS desconectado',
-              subTitle: 'Active el GPS de su dispositivo.',
-              buttons: ['ok']
-            });
-            alert.present();
-          }
-          else {
-            this.loadFarmaciasCercanas();
-          }
-        }).catch((e) => {
-          console.log(e);
-          alert(JSON.stringify(e));
-        });
-
-
-    });
-  }
+  
   loadFarmaciasCercanas() {
     this.locations.FarmaciasCercanas(this.idProducto)
       .then(data => {
