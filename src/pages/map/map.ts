@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, Platform } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaPage } from '../farmacia/farmacia';
-import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 
@@ -18,7 +17,6 @@ export class MapPage {
   map: any;
   myUbication: any;
   constructor(
-    private diagnostic: Diagnostic,
     public platform: Platform, private alertController: AlertController,
     public geolocation: Geolocation,
     private navCtrl: NavController,

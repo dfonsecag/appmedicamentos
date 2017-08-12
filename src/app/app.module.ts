@@ -4,7 +4,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { CallNumber } from '@ionic-native/call-number';
-import { Diagnostic } from '@ionic-native/diagnostic';
 
 import { MapPage } from '../pages/map/map';
 import { FarmaciaPage } from '../pages/farmacia/farmacia';
@@ -56,7 +55,6 @@ import { Network } from '@ionic-native/network';
 
   ],
   providers: [
-    Diagnostic,
     StatusBar,
     SplashScreen,
     Geolocation,

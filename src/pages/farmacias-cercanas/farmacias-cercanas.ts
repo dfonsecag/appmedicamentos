@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaProductoPage } from '../farmacia-producto/farmacia-producto';
-import { Diagnostic } from '@ionic-native/diagnostic';
 import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
@@ -26,7 +25,6 @@ export class FarmaciasCercanasPage {
   map: any;
   myUbication: any;
   constructor(
-    private diagnostic: Diagnostic,
     public platform: Platform, private alertController: AlertController,
     public geolocation: Geolocation,
     private navCtrl: NavController,
