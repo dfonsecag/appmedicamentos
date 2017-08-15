@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, Platform } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaPage } from '../farmacia/farmacia';
 
@@ -17,7 +17,7 @@ export class MapPage {
   map: any;
   myUbication: any;
   constructor(
-    public platform: Platform, private alertController: AlertController,
+    public platform: Platform,
     public geolocation: Geolocation,
     private navCtrl: NavController,
     public locations: LocationsProvider
