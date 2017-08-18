@@ -47,11 +47,11 @@ export class HomePage {
 
   // pasa a la pagina de farmacias cercanas
   FarmaciaCercanas() {
-    this.navCtrl.push(MapPage)
+    this.navCtrl.setRoot(MapPage)
   }
   // pasa a la pagina de farmacias cercanas
   Productos() {
-    this.navCtrl.push(ProductoPage)
+    this.navCtrl.setRoot(ProductoPage)
   }
 
 }

@@ -21,9 +21,9 @@ export class InfoProductoPage {
 
   constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams, private infoProducto: DireccionesProvider) {
     this.idProducto = navParams.get("id");
-    platform.ready().then(() => {
-      platform.registerBackButtonAction(() => this.anteriorPage());
-    })
+    // platform.ready().then(() => {
+    //   platform.registerBackButtonAction(() => this.anteriorPage());
+    // })
   }
 
 
@@ -40,7 +40,7 @@ export class InfoProductoPage {
   }
   // Metodo para enviar a ventana Farmacias Cercanas que tengan ese producto
   FarmaciaProducto(id, nombre) {
-    this.navCtrl.push(FarmaciasCercanasPage, { id: id, nombre: nombre })
+    this.navCtrl.setRoot(FarmaciasCercanasPage, { id: id, nombre: nombre })
   }
   // Obtiene la informacion del plan paciente si un producto lo tiene
   infoPlanpaciente(id) {
@@ -50,7 +50,7 @@ export class InfoProductoPage {
         this.planPaciente = data;
       });
   }
-  anteriorPage() {
-    this.navCtrl.pop();
-  }
+  // anteriorPage() {
+  //   this.navCtrl.pop();
+  // }
 }

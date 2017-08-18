@@ -32,10 +32,10 @@ export class FarmaciasCercanasPage {
     public navParams: NavParams
   ) {
     this.idProducto = navParams.get("id");
-    this.nombreProducto = navParams.get("nombre");
-       platform.ready().then(() => {
-      platform.registerBackButtonAction(() => this.anteriorPage());
-    })
+    // this.nombreProducto = navParams.get("nombre");
+    //    platform.ready().then(() => {
+    //   platform.registerBackButtonAction(() => this.anteriorPage());
+    // })
   }
 
   ionViewDidLoad() {
@@ -113,11 +113,11 @@ export class FarmaciasCercanasPage {
     });
   }
   page(id) {
-    this.navCtrl.push(FarmaciaProductoPage, { id: id })
+    this.navCtrl.setRoot(FarmaciaProductoPage, { id: id })
   }
-  anteriorPage() {
-    this.navCtrl.pop();
-  }
+  // anteriorPage() {
+  //   this.navCtrl.pop();
+  // }
 
 
 }
