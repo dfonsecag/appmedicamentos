@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { FarmaciasCercanasPage } from '../farmacias-cercanas/farmacias-cercanas';
 
@@ -19,14 +19,18 @@ export class InfoProductoPage {
   public list: any;
   public planPaciente: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private infoProducto: DireccionesProvider) {
+  constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams, private infoProducto: DireccionesProvider) {
     this.idProducto = navParams.get("id");
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.anteriorPage());
+    })
   }
+
 
   ionViewDidLoad() {
     this.loadInfoProducto();
   }
-   //Obtiene la informacion de un produccto determinado
+  //Obtiene la informacion de un produccto determinado
   loadInfoProducto() {
     this.infoProducto.getInfoProducto(this.idProducto)
       .then(data => {
@@ -34,16 +38,19 @@ export class InfoProductoPage {
         console.log(this.list);
       });
   }
-    // Metodo para enviar a ventana Farmacias Cercanas que tengan ese producto
-     FarmaciaProducto(id, nombre) {
-    this.navCtrl.push(FarmaciasCercanasPage,{id: id, nombre:nombre})    
+  // Metodo para enviar a ventana Farmacias Cercanas que tengan ese producto
+  FarmaciaProducto(id, nombre) {
+    this.navCtrl.push(FarmaciasCercanasPage, { id: id, nombre: nombre })
   }
-    // Obtiene la informacion del plan paciente si un producto lo tiene
-    infoPlanpaciente(id){
-      console.log(id);
-      this.infoProducto.getInfoPlanPaciente(id)
+  // Obtiene la informacion del plan paciente si un producto lo tiene
+  infoPlanpaciente(id) {
+    console.log(id);
+    this.infoProducto.getInfoPlanPaciente(id)
       .then(data => {
         this.planPaciente = data;
       });
-    }
+  }
+  anteriorPage() {
+    this.navCtrl.pop();
+  }
 }

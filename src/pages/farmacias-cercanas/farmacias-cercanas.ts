@@ -33,6 +33,9 @@ export class FarmaciasCercanasPage {
   ) {
     this.idProducto = navParams.get("id");
     this.nombreProducto = navParams.get("nombre");
+       platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.anteriorPage());
+    })
   }
 
   ionViewDidLoad() {
@@ -77,7 +80,8 @@ export class FarmaciasCercanasPage {
       new google.maps.Marker({
         position: myLatLng,
         map: this.map,
-        title: 'Aquí estoy yo'
+        title: 'Aquí estoy yo',
+        label: 'Yo',
       });
       mapEle.classList.add('show-map');
     });
@@ -98,6 +102,7 @@ export class FarmaciasCercanasPage {
             map: this.map,
             title: title,
             idProducto: idProducto,
+            icon: '../assets/imgs/iconfarmacia.png'
           });
           marker.addListener('click', (event) => {
             this.page(idProducto);
@@ -109,6 +114,9 @@ export class FarmaciasCercanasPage {
   }
   page(id) {
     this.navCtrl.push(FarmaciaProductoPage, { id: id })
+  }
+  anteriorPage() {
+    this.navCtrl.pop();
   }
 
 

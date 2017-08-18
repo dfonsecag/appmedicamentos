@@ -12,11 +12,9 @@ import { InfoProductoPage } from '../pages/info-producto/info-producto';
 import { FarmaciasCercanasPage } from '../pages/farmacias-cercanas/farmacias-cercanas';
 import { FarmaciaProductoPage } from '../pages/farmacia-producto/farmacia-producto';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { GoogleMapsProvider} from '../providers/google-maps/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DireccionesProvider } from '../providers/direcciones/direcciones';
@@ -36,8 +34,7 @@ import { Network } from '@ionic-native/network';
     ProductoPage,
     InfoProductoPage,
     FarmaciaProductoPage,
-    HomePage,
-    TabsPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -53,8 +50,7 @@ import { Network } from '@ionic-native/network';
     ProductoPage,
     InfoProductoPage,
     FarmaciaProductoPage,
-    HomePage,
-    TabsPage
+    HomePage
 
   ],
   providers: [
@@ -62,7 +58,6 @@ import { Network } from '@ionic-native/network';
     SplashScreen,
     Geolocation,
     GoogleMaps,
-    GoogleMapsProvider,
     CallNumber,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     DireccionesProvider,

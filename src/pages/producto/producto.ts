@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { InfoProductoPage } from '../info-producto/info-producto';
 
@@ -15,9 +15,13 @@ import { InfoProductoPage } from '../info-producto/info-producto';
   templateUrl: 'producto.html',
 })
 export class ProductoPage {
+
   public list: any;
 
-  constructor(private alertController: AlertController, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider) {
+  constructor(platform: Platform, private alertController: AlertController, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider) {
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.anteriorPage());
+    })
   }
 
   ionViewDidLoad() {
@@ -28,26 +32,30 @@ export class ProductoPage {
     if (formData.valid) {
       this.infoFarmacia.getSearchProducto(formData.value.producto)
         .then(data => {
-          this.verificarList(data);          
+          this.verificarList(data);
         });
-       
+
     }
   }
-  verificarList(data){
-    if(data==''){
-       let alert = this.alertController.create({
-    title: 'No se encuentra coincidencia',
-    subTitle: 'Intente con otra palabra',
-    buttons: ['ok']
-  });
-  alert.present();
+  verificarList(data) {
+    if (data == '') {
+      let alert = this.alertController.create({
+        title: 'No se encuentra coincidencia',
+        subTitle: 'Intente con otra palabra',
+        buttons: ['ok']
+      });
+      alert.present();
     }
-      else
-        this.list=data;
+    else
+      this.list = data;
   }
   // pasa a la pagina de informacion de producto con el parametro
   itemSelected(id) {
-    this.navCtrl.push(InfoProductoPage,{id: id})
+    this.navCtrl.push(InfoProductoPage, { id: id })
+  }
+
+  anteriorPage() {
+    this.navCtrl.pop();
   }
 
 }

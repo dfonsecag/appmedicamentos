@@ -21,12 +21,16 @@ export class MapPage {
     public geolocation: Geolocation,
     private navCtrl: NavController,
     public locations: LocationsProvider
-  ) { }
+  ) {
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.anteriorPage());
+    })
+  }
 
   ionViewDidLoad() {
-     this.FarmaciasCercanas();
+    this.FarmaciasCercanas();
   }
-  
+
   FarmaciasCercanas() {
     this.locations.load()
       .then(data => {
@@ -65,7 +69,7 @@ export class MapPage {
       new google.maps.Marker({
         position: myLatLng,
         map: this.map,
-        label: 'Yo',
+        label: 'Yo'
       });
       mapEle.classList.add('show-map');
     });
@@ -85,7 +89,8 @@ export class MapPage {
             position: myLatLng,
             map: this.map,
             title: title,
-            id: idFarmacia
+            id: idFarmacia,
+            icon: '../assets/imgs/iconfarmacia.png'
           });
           marker.addListener('click', (event) => {
             this.page(marker.id);
@@ -98,6 +103,8 @@ export class MapPage {
   page(id) {
     this.navCtrl.push(FarmaciaPage, { id: id })
   }
-
+  anteriorPage() {
+    this.navCtrl.pop();
+  }
 
 }

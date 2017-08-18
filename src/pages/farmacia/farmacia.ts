@@ -20,8 +20,11 @@ export class FarmaciaPage {
   public idFarmacia;
   public list: any;
 
-  constructor(private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider,private platform: Platform) {
+  constructor(private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider, private platform: Platform) {
     this.idFarmacia = navParams.get("id");
+    platform.ready().then(() => {
+      platform.registerBackButtonAction(() => this.anteriorPage());
+    })
   }
 
   ionViewDidLoad() {
@@ -35,24 +38,28 @@ export class FarmaciaPage {
         this.list = data;
       });
   }
-    // metodo para hacer una llamada del boton de la farmacia
+  // metodo para hacer una llamada del boton de la farmacia
   launchDialer(n: string) {
     this.callNumber.callNumber(n, true)
       .then(() => console.log('Launched dialer!'))
       .catch(() => console.log('Error llamando'));
   }
-    //Metodo para abrir el waze o map para dirigirse a la farmacia
+  //Metodo para abrir el waze o map para dirigirse a la farmacia
   openFilters(latitude, longitude) {
     let destination = latitude + ',' + longitude;
 
     if (this.platform.is('ios')) {
-      console.log('soy ios: '+destination);
+      console.log('soy ios: ' + destination);
       window.open('maps://?q=' + destination, '_system');
     } else {
       let label = encodeURI('My Label');
-      console.log('soy android: '+destination);
+      console.log('soy android: ' + destination);
       window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
     }
   }
+  anteriorPage() {
+    this.navCtrl.pop();
+  }
+
 
 }
