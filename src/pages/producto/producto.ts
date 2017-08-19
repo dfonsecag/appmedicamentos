@@ -19,9 +19,7 @@ export class ProductoPage {
   public list: any;
 
   constructor(platform: Platform, private alertController: AlertController, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider) {
-    // platform.ready().then(() => {
-    //   platform.registerBackButtonAction(() => this.anteriorPage());
-    // })
+ 
   }
 
   ionViewDidLoad() {
@@ -53,9 +51,5 @@ export class ProductoPage {
   itemSelected(id) {
     this.navCtrl.setRoot(InfoProductoPage, { id: id })
   }
-
-  // anteriorPage() {
-  //   this.navCtrl.pop();
-  // }
 
 }

@@ -21,9 +21,6 @@ export class InfoProductoPage {
 
   constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams, private infoProducto: DireccionesProvider) {
     this.idProducto = navParams.get("id");
-    // platform.ready().then(() => {
-    //   platform.registerBackButtonAction(() => this.anteriorPage());
-    // })
   }
 
 
@@ -50,7 +47,4 @@ export class InfoProductoPage {
         this.planPaciente = data;
       });
   }
-  // anteriorPage() {
-  //   this.navCtrl.pop();
-  // }
 }

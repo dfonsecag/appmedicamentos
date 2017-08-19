@@ -22,9 +22,7 @@ export class FarmaciaPage {
 
   constructor(private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider, private platform: Platform) {
     this.idFarmacia = navParams.get("id");
-    platform.ready().then(() => {
-      platform.registerBackButtonAction(() => this.anteriorPage());
-    })
+   
   }
 
   ionViewDidLoad() {
@@ -56,9 +54,6 @@ export class FarmaciaPage {
       console.log('soy android: ' + destination);
       window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
     }
-  }
-  anteriorPage() {
-    this.navCtrl.pop();
   }
 
 

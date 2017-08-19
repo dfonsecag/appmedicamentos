@@ -22,9 +22,6 @@ export class MapPage {
     private navCtrl: NavController,
     public locations: LocationsProvider
   ) {
-    platform.ready().then(() => {
-      platform.registerBackButtonAction(() => this.anteriorPage());
-    })
   }
 
   ionViewDidLoad() {
@@ -90,7 +87,7 @@ export class MapPage {
             map: this.map,
             title: title,
             id: idFarmacia,
-            icon: '../assets/imgs/iconfarmacia.png'
+            // icon: '../assets/imgs/iconfarmacia.png'
           });
           marker.addListener('click', (event) => {
             this.page(marker.id);
@@ -101,10 +98,6 @@ export class MapPage {
     });
   }
   page(id) {
-    this.navCtrl.push(FarmaciaPage, { id: id })
+    this.navCtrl.setRoot(FarmaciaPage, { id: id })
   }
-  anteriorPage() {
-    this.navCtrl.pop();
-  }
-
 }
