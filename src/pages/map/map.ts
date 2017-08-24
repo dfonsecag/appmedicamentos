@@ -98,6 +98,6 @@ export class MapPage {
     });
   }
   page(id) {
-    this.navCtrl.setRoot(FarmaciaPage, { id: id })
+    this.navCtrl.push(FarmaciaPage, { id: id })
   }
 }

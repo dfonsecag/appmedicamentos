@@ -20,7 +20,7 @@ export class FarmaciaPage {
   public idFarmacia;
   public list: any;
 
-  constructor(private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider, private platform: Platform) {
+  constructor(private callNumber: CallNumber, public navParams: NavParams, public infoFarmacia: DireccionesProvider, private platform: Platform) {
     this.idFarmacia = navParams.get("id");
    
   }

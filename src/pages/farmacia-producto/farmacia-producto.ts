@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import {  NavParams , Navbar, NavController} from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { CallNumber } from '@ionic-native/call-number';
 import { Platform } from 'ionic-angular';
@@ -17,15 +17,19 @@ import { Platform } from 'ionic-angular';
   templateUrl: 'farmacia-producto.html',
 })
 export class FarmaciaProductoPage {
+  @ViewChild(Navbar) navBar: Navbar;
   public idProducto;
   public list: any;
 
-  constructor(private platform: Platform, private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams, private infoFarmaciaProducto: DireccionesProvider) {
+  constructor( public navCtrl: NavController,private platform: Platform, private callNumber: CallNumber, public navParams: NavParams, private infoFarmaciaProducto: DireccionesProvider) {
     this.idProducto = navParams.get("id");
   }
 
   ionViewDidLoad() {
     this.loadInfoProducto();
+    this.navBar.backButtonClick = () => {
+      this.navCtrl.pop();
+    };
   }
   //Obtiene la informacion de un produccto determinado
   loadInfoProducto() {

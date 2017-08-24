@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Platform, Navbar } from 'ionic-angular';
 import { LocationsProvider } from '../../providers/locations/locations';
 import { FarmaciaProductoPage } from '../farmacia-producto/farmacia-producto';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -18,6 +18,7 @@ declare var google;
   templateUrl: 'farmacias-cercanas.html',
 })
 export class FarmaciasCercanasPage {
+  @ViewChild(Navbar) navBar: Navbar;
   public idProducto;
   public nombreProducto;
   public list: any;
@@ -32,11 +33,14 @@ export class FarmaciasCercanasPage {
     public navParams: NavParams
   ) {
     this.idProducto = navParams.get("id");
-  
+    this.nombreProducto = navParams.get('nombre');
   }
 
   ionViewDidLoad() {
      this.loadFarmaciasCercanas();
+     this.navBar.backButtonClick = () => {
+      this.navCtrl.pop();
+    };
 
   }
   
@@ -110,7 +114,7 @@ export class FarmaciasCercanasPage {
     });
   }
   page(id) {
-    this.navCtrl.setRoot(FarmaciaProductoPage, { id: id })
+    this.navCtrl.push(FarmaciaProductoPage, { id: id })
   }
 
 }

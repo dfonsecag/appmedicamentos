@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, ViewChild} from '@angular/core';
+import { NavController, NavParams, Platform, Navbar } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { FarmaciasCercanasPage } from '../farmacias-cercanas/farmacias-cercanas';
 
@@ -18,7 +18,7 @@ export class InfoProductoPage {
   public idProducto;
   public list: any;
   public planPaciente: any;
-
+  @ViewChild(Navbar) navBar: Navbar;
   constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams, private infoProducto: DireccionesProvider) {
     this.idProducto = navParams.get("id");
   }
@@ -26,6 +26,9 @@ export class InfoProductoPage {
 
   ionViewDidLoad() {
     this.loadInfoProducto();
+    this.navBar.backButtonClick = () => {
+      this.navCtrl.pop();
+    };
   }
   //Obtiene la informacion de un produccto determinado
   loadInfoProducto() {
@@ -37,7 +40,7 @@ export class InfoProductoPage {
   }
   // Metodo para enviar a ventana Farmacias Cercanas que tengan ese producto
   FarmaciaProducto(id, nombre) {
-    this.navCtrl.setRoot(FarmaciasCercanasPage, { id: id, nombre: nombre })
+    this.navCtrl.push(FarmaciasCercanasPage, { id: id, nombre: nombre })
   }
   // Obtiene la informacion del plan paciente si un producto lo tiene
   infoPlanpaciente(id) {
@@ -47,4 +50,9 @@ export class InfoProductoPage {
         this.planPaciente = data;
       });
   }
+    
+      Atras(){
+        this.navCtrl.pop();
+      }
+
 }
