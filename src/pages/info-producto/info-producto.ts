@@ -26,7 +26,10 @@ export class InfoProductoPage {
 
   ionViewDidLoad() {
     this.loadInfoProducto();
-    this.navBar.backButtonClick = () => {
+  
+  }
+   ionViewWillLeave(){
+      this.navBar.backButtonClick = () => {
       this.navCtrl.pop();
     };
   }

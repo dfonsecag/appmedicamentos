@@ -87,7 +87,7 @@ export class MapPage {
             map: this.map,
             title: title,
             id: idFarmacia,
-            // icon: '../assets/imgs/iconfarmacia.png'
+             icon: '../assets/imgs/iconfarmacia.png'
           });
           marker.addListener('click', (event) => {
             this.page(marker.id);

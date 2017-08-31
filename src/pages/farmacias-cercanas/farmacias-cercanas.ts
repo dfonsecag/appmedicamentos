@@ -38,10 +38,12 @@ export class FarmaciasCercanasPage {
 
   ionViewDidLoad() {
      this.loadFarmaciasCercanas();
-     this.navBar.backButtonClick = () => {
+
+  }
+   ionViewWillLeave(){
+      this.navBar.backButtonClick = () => {
       this.navCtrl.pop();
     };
-
   }
   
   loadFarmaciasCercanas() {
@@ -103,7 +105,7 @@ export class FarmaciasCercanasPage {
             map: this.map,
             title: title,
             idProducto: idProducto,
-            // icon: '../assets/imgs/iconfarmacia.png'
+           icon: '../assets/imgs/iconfarmacia.png'
           });
           marker.addListener('click', (event) => {
             this.page(idProducto);

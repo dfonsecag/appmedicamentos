@@ -10,7 +10,7 @@ import { Platform } from 'ionic-angular';
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
- */
+ */ 
 
 @Component({
   selector: 'page-farmacia-producto',
@@ -27,7 +27,10 @@ export class FarmaciaProductoPage {
 
   ionViewDidLoad() {
     this.loadInfoProducto();
-    this.navBar.backButtonClick = () => {
+  
+  }
+  ionViewWillLeave(){
+      this.navBar.backButtonClick = () => {
       this.navCtrl.pop();
     };
   }

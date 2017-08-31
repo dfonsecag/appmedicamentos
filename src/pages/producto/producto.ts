@@ -24,10 +24,13 @@ export class ProductoPage {
   }
 
   ionViewDidLoad() {
-    this.navBar.backButtonClick = () => {
+   
+    
+  }
+   ionViewWillLeave(){
+      this.navBar.backButtonClick = () => {
       this.navCtrl.pop();
     };
-    
   }
   // hace el submit de la vista para buscar el  producto
   onSubmit(formData) {
