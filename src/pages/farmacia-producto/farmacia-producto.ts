@@ -61,4 +61,7 @@ export class FarmaciaProductoPage {
       window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
     }
   }
+  Atras() {
+    this.navCtrl.pop();
+  }
 }

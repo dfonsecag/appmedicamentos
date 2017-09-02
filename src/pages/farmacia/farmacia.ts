@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  NavParams } from 'ionic-angular';
+import {  NavParams, NavController } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { CallNumber } from '@ionic-native/call-number';
 import { Platform } from 'ionic-angular';
@@ -20,7 +20,7 @@ export class FarmaciaPage {
   public idFarmacia;
   public list: any;
 
-  constructor(private callNumber: CallNumber, public navParams: NavParams, public infoFarmacia: DireccionesProvider, private platform: Platform) {
+  constructor(private navCtrl: NavController, private callNumber: CallNumber, public navParams: NavParams, public infoFarmacia: DireccionesProvider, private platform: Platform) {
     this.idFarmacia = navParams.get("id");
    
   }
@@ -55,6 +55,8 @@ export class FarmaciaPage {
       window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
     }
   }
-
+  Atras() {
+    this.navCtrl.pop();
+  }
 
 }

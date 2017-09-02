@@ -58,5 +58,8 @@ export class ProductoPage {
   itemSelected(id) {
     this.navCtrl.push(InfoProductoPage, { id: id })
   }
+  Atras() {
+    this.navCtrl.pop();
+  }
 
 }

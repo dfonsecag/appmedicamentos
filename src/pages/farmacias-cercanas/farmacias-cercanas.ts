@@ -118,5 +118,7 @@ export class FarmaciasCercanasPage {
   page(id) {
     this.navCtrl.push(FarmaciaProductoPage, { id: id })
   }
-
+  Atras() {
+    this.navCtrl.pop();
+  }
 }

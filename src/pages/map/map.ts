@@ -100,4 +100,7 @@ export class MapPage {
   page(id) {
     this.navCtrl.push(FarmaciaPage, { id: id })
   }
+  Atras() {
+    this.navCtrl.pop();
+  }
 }

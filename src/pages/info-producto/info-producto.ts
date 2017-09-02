@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform, Navbar } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { FarmaciasCercanasPage } from '../farmacias-cercanas/farmacias-cercanas';
@@ -26,12 +26,7 @@ export class InfoProductoPage {
 
   ionViewDidLoad() {
     this.loadInfoProducto();
-  
-  }
-   ionViewWillLeave(){
-      this.navBar.backButtonClick = () => {
-      this.navCtrl.pop();
-    };
+
   }
   //Obtiene la informacion de un produccto determinado
   loadInfoProducto() {
@@ -53,9 +48,9 @@ export class InfoProductoPage {
         this.planPaciente = data;
       });
   }
-    
-      Atras(){
-        this.navCtrl.pop();
-      }
+
+  Atras() {
+    this.navCtrl.pop();
+  }
 
 }

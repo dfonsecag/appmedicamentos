@@ -68,9 +68,6 @@
     </button>
 
     </ion-row>
-   <ion-col col-10>        
-        <button ion-button round (click)="Atras()">Farmacias Cercanas</button>
-      </ion-col>
 
   </ion-grid>
   <ion-list>
@@ -79,3 +76,9 @@
     </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button (click)="Atras()" block><ion-icon name="arrow-back"></ion-icon>Atrás</button>
+  </ion-toolbar>
+</ion-footer>
