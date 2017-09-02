@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   rootPage:any = HomePage;
 
@@ -16,6 +17,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+       setTimeout(() => {
+        splashScreen.hide();
+      }, 100);
+      
     });
   }
 }
