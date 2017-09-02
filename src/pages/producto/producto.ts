@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, AlertController, Platform, Navbar } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { InfoProductoPage } from '../info-producto/info-producto';
 
@@ -18,7 +18,6 @@ export class ProductoPage {
   
 
   public list: any;
- @ViewChild(Navbar) navBar: Navbar;
   constructor(platform: Platform, private alertController: AlertController, public navCtrl: NavController, public navParams: NavParams, public infoFarmacia: DireccionesProvider) {
  
   }
@@ -26,11 +25,6 @@ export class ProductoPage {
   ionViewDidLoad() {
    
     
-  }
-   ionViewWillLeave(){
-      this.navBar.backButtonClick = () => {
-      this.navCtrl.pop();
-    };
   }
   // hace el submit de la vista para buscar el  producto
   onSubmit(formData) {

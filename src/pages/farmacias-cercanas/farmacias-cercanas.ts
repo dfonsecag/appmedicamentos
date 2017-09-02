@@ -40,11 +40,7 @@ export class FarmaciasCercanasPage {
      this.loadFarmaciasCercanas();
 
   }
-   ionViewWillLeave(){
-      this.navBar.backButtonClick = () => {
-      this.navCtrl.pop();
-    };
-  }
+   
   
   loadFarmaciasCercanas() {
     this.locations.FarmaciasCercanas(this.idProducto)

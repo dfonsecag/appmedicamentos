@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Platform, Navbar } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DireccionesProvider } from '../../providers/direcciones/direcciones';
 import { FarmaciasCercanasPage } from '../farmacias-cercanas/farmacias-cercanas';
 
@@ -18,7 +18,6 @@ export class InfoProductoPage {
   public idProducto;
   public list: any;
   public planPaciente: any;
-  @ViewChild(Navbar) navBar: Navbar;
   constructor(platform: Platform, public navCtrl: NavController, public navParams: NavParams, private infoProducto: DireccionesProvider) {
     this.idProducto = navParams.get("id");
   }
