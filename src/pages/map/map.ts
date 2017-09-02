@@ -86,8 +86,7 @@ export class MapPage {
             position: myLatLng,
             map: this.map,
             title: title,
-            id: idFarmacia,
-             icon: '../assets/imgs/iconfarmacia.png'
+            id: idFarmacia
           });
           marker.addListener('click', (event) => {
             this.page(marker.id);

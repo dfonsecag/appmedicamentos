@@ -100,8 +100,7 @@ export class FarmaciasCercanasPage {
             position: myLatLng,
             map: this.map,
             title: title,
-            idProducto: idProducto,
-           icon: '../assets/imgs/iconfarmacia.png'
+            idProducto: idProducto
           });
           marker.addListener('click', (event) => {
             this.page(idProducto);
